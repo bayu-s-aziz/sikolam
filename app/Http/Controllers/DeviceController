@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class   DeviceController extends Controller
+{
+    public function updateConnectionStatus(Request $request)
+    {
+        // Simpan status koneksi ke database atau sesi
+        $status = $request->input('status');
+        session(['connection_status' => $status]);
+
+        return response()->json(['status' => 'success']);
+    }
+    public function getConnectionStatus()
+    {
+        $status = session('connection_status', 'disconnected');
+        return response()->json(['status' => $status]);
+    }
+}

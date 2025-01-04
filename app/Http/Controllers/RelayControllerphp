@@ -1,0 +1,58 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Jadwal;  // Assuming Jadwal model is used to store relay status
+
+class RelayController extends Controller
+{
+    // Show the relay control page
+    public function show()
+    {
+        $jadwal = Jadwal::first(); // Fetch the status from the Jadwal model
+
+        return view('dashboard', [
+            'name' => $jadwal->name,
+            'relay' => $jadwal->relay,
+            'timeon' => $jadwal->timeon,
+            'timeoff' => $jadwal->timeoff,
+            'status' => $jadwal->status,
+        ]);
+    }
+
+    // Update the relay status
+    public function update(Request $request, $relayNumber)
+    {
+        // Validate the incoming request
+        $request->validate([
+            'status' => 'required|boolean', // Ensure status is a boolean
+        ]);
+
+        // Fetch the relay status from the database
+        $jadwal = Jadwal::first(); // You may want to fetch by a specific condition, depending on your requirements
+
+        // Update the appropriate relay status
+        switch ($relayNumber) {
+            case 1:
+                $jadwal->relay1_status = $request->input('status');
+                break;
+            case 2:
+                $jadwal->relay2_status = $request->input('status');
+                break;
+            case 3:
+                $jadwal->relay3_status = $request->input('status');
+                break;
+            case 4:
+                $jadwal->relay4_status = $request->input('status');
+                break;
+            default:
+                return redirect()->route('dashboard')->with('error', 'Invalid relay number.');
+        }
+
+        // Save the updated status to the database
+        $jadwal->save();
+
+        return redirect()->route('dashboard')->with('success', 'Relay status updated successfully.');
+    }
+}
