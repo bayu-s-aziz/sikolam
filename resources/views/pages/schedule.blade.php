@@ -2,146 +2,190 @@
 
 @section('content')
 @include('layouts.navbars.auth.topnav', ['title' => 'Schedule'])
-<div class="container-fluid pb-4 px-4 mt-1">
-    <div id="alert">
-        @include('components.alert')
-    </div>
+<div class="container-fluid py-4">
     <div class="row">
-        <div class="col-12">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
             <div class="card">
-                <div class="card-body px-0 pt-0 pb-2">
-                    <div class="table-responsive px-1">
-                        <table class="table align-items-center mb-0">
-                            <thead>
-                                <tr>
-                                    <th class="text-uppercase  text-xxs font-weight-bolder opacity-7">
-                                        Name</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Time On</th>
-                                    <th
-                                        class="text-center text-uppercase  text-xxs font-weight-bolder opacity-7">
-                                        Time Off</th>
-                                    <th
-                                        class="text-center text-uppercase  text-xxs font-weight-bolder opacity-7">
-                                        Status</th>
-                                    <th class="text-secondary opacity-7"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-1 py-1">
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">Lampu Teras</h6>
-                                                <p class="text-xs text-secondary mb-0">Relay 1(D5)</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">17.00</p>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="text-secondary text-xs font-weight-bold">05.00</span>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="text-success text-xs font-weight-bold">On</span>
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal"
-                                            data-bs-target="#editModal" data-name="" data-time-on=""
-                                            data-time-off="" data-action-url="/schedule/1">
-                                            Edit
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-1 py-1">
+                <div class="card-body p-3">
+                    <div class="row">
+                        <div class="col-10">
+                            <div class="numbers">
+                                <p class="text-sm mb-0 text-uppercase font-weight-bolder" id="Nama-Lampu-1">Lampu Teras</p>
+                                <h5 class="font-weight-bolder">
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <a href="#" class="text-secondary text-xxs text" data-bs-toggle="modal"
+                                data-bs-target="#editModal" data-name="Lampu Teras" data-time-on=""
+                                data-time-off="" data-action-url=""><i class="ni ni-settings-gear-65 text-lg opacity-10" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="col-8 schedule-1">
+                            <p class="mb-0">
+                                <span class="text-sm font-weight-bold">Time On : 05.00 pm</span>
+                            </p>
+                            <p class="mb-0">
+                                <span class="text-sm font-weight-bold">Time Off : 05.00 am</span>
+                            </p>
+                        </div>
+                        <div class="col-4 text-end">
+                            <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle" id="icon-status-1">
+                                <i class="ni ni-bulb-61 text-lg opacity-10" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="btn-switch mt-2">
+                            <form method="POST" action="/Relay1">
+                                @csrf
+                                <input type="hidden" name="status" value="1" id="relay-status1">
+                                <label class="switch">
+                                    <input type="checkbox" id="relay-toggle1" onchange="toggleRelay1()">
+                                    <span class="slider round"></span>
+                                </label>
+                            </form>
+                        </div>
 
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">Lampu Ruang Tamu</h6>
-                                                <p class="text-xs text-secondary mb-0">Relay 2(D6)</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">17.00</p>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="text-secondary text-xs font-weight-bold">05.00</span>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="text-warning text-xs font-weight-bold ">Off</span>
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal"
-                                            data-bs-target="#editModal" data-name="" data-time-on=""
-                                            data-time-off="" data-action-url="/schedule/2">
-                                            Edit
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-1 py-1">
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">Lampu Kamar Tidur</h6>
-                                                <p class="text-xs text-secondary mb-0">Relay 3(D7)</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">17.00</p>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="text-secondary text-xs font-weight-bold">05.00</span>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="text-success text-xs font-weight-bold">On</span>
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal"
-                                            data-bs-target="#editModal" data-name="" data-time-on=""
-                                            data-time-off="" data-action-url="/schedule/3">
-                                            Edit
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-1 py-1">
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">Lampu Kamar Mandi</h6>
-                                                <p class="text-xs text-secondary mb-0">Relay 4(D0)</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">17.00</p>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="text-secondary text-xs font-weight-bold">05.00</span>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="text-success text-xs font-weight-bold">On</span>
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal"
-                                            data-bs-target="#editModal" data-name="" data-time-on=""
-                                            data-time-off="" data-action-url="/schedule/4">
-                                            Edit
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+                <div class="card-body p-3">
+                    <div class="row">
+                        <div class="col-10">
+                            <div class="numbers">
+                                <p class="text-sm mb-0 text-uppercase font-weight-bolder" id="Nama-Lampu-2">Lampu Ruang Tamu</p>
+                                <h5 class="font-weight-bolder">
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <a href="#" class="text-secondary text-xxs text" data-bs-toggle="modal"
+                                data-bs-target="#editModal" data-name="Lampu Ruang Tamu" data-time-on=""
+                                data-time-off="" data-action-url=""><i class="ni ni-settings-gear-65 text-lg opacity-10" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="col-8 schedule-2">
+                            <p class="mb-0">
+                                <span class="text-sm font-weight-bold">Time On : 05.00 pm</span>
+                            </p>
+                            <p class="mb-0">
+                                <span class="text-sm font-weight-bold">Time Off : 05.00 am</span>
+                            </p>
+                        </div>
+                        <div class="col-4 text-end">
+                            <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle" id="icon-status-2">
+                                <i class="ni ni-bulb-61 text-lg opacity-10" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="btn-switch mt-2">
+                            <form method="POST" action="/Relay2">
+                                @csrf
+                                <input type="hidden" name="status" value="1" id="relay-status2">
+                                <label class="switch">
+                                    <input type="checkbox" id="relay-toggle2" onchange="toggleRelay2()">
+                                    <span class="slider round"></span>
+                                </label>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+                <div class="card-body p-3">
+                    <div class="row">
+                        <div class="col-10">
+                            <div class="numbers">
+                                <p class="text-sm mb-0 text-uppercase font-weight-bolder" id="Nama-Lampu-3">Lampu Kamar Tidur</p>
+                                <h5 class="font-weight-bolder">
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <a href="#" class="text-secondary text-xxs text" data-bs-toggle="modal"
+                                data-bs-target="#editModal" data-name="Lampu Kamar Tidur" data-time-on=""
+                                data-time-off="" data-action-url=""><i class="ni ni-settings-gear-65 text-lg opacity-10" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="col-8 schedule-3">
+                            <p class="mb-0">
+                                <span class="text-sm font-weight-bold">Time On : 05.00 pm</span>
+                            </p>
+                            <p class="mb-0">
+                                <span class="text-sm font-weight-bold">Time Off : 05.00 am</span>
+                            </p>
+                        </div>
+                        <div class="col-4 text-end">
+                            <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle" id="icon-status-3">
+                                <i class="ni ni-bulb-61 text-lg opacity-10" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="btn-switch mt-2">
+                            <form method="POST" action="/Relay3">
+                                @csrf
+                                <input type="hidden" name="status" value="1" id="relay-status3">
+                                <label class="switch">
+                                    <input type="checkbox" id="relay-toggle3" onchange="toggleRelay3()">
+                                    <span class="slider round"></span>
+                                </label>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+            <div class="card">
+                <div class="card-body p-3">
+                    <div class="row">
+                        <div class="col-10">
+                            <div class="numbers">
+                                <p class="text-sm mb-0 text-uppercase font-weight-bolder" id="Nama-Lampu-4">Lampu Kamar Mandi</p>
+                                <h5 class="font-weight-bolder">
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <a href="#" class="text-secondary text-xxs text" data-bs-toggle="modal"
+                                data-bs-target="#editModal" data-name="Lampu Kamar Mandi" data-time-on=""
+                                data-time-off="" data-action-url=""><i class="ni ni-settings-gear-65 text-lg opacity-10" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="col-8 schedule-4">
+                            <p class="mb-0">
+                                <span class="text-sm font-weight-bold">Time On : 05.00 pm</span>
+                            </p>
+                            <p class="mb-0">
+                                <span class="text-sm font-weight-bold">Time Off : 05.00 am</span>
+                            </p>
+                        </div>
+                        <div class="col-4 text-end">
+                            <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle" id="icon-status-4">
+                                <i class="ni ni-bulb-61 text-lg opacity-10" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="btn-switch mt-2">
+                            <form method="POST" action="/Relay4">
+                                @csrf
+                                <input type="hidden" name="status" value="1" id="relay-status4">
+                                <label class="switch">
+                                    <input type="checkbox" id="relay-toggle4" onchange="toggleRelay4()">
+                                    <span class="slider round"></span>
+                                </label>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- Modal -->
 <!-- Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-dialog-centered">
@@ -153,10 +197,6 @@
             <div class="modal-body">
                 <form id="editForm" method="POST" action="{{ route('save.schedule') }}">
                     @csrf
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
-                    </div>
                     <div class="mb-3">
                         <label for="time_on" class="form-label">Time On</label>
                         <input type="time" class="form-control" id="time_on" name="time_on" required>
@@ -193,10 +233,37 @@
             // Isi form dengan data dari tombol
             const modalForm = editModal.querySelector('#editForm');
             modalForm.action = actionUrl;
-            modalForm.querySelector('#name').value = name;
-            modalForm.querySelector('#time_on').value = timeOn;
-            modalForm.querySelector('#time_off').value = timeOff;
-            modalForm.querySelector('#status').value = status;
+            modalForm.querySelector('#time_on').value = timeOn || '';
+            modalForm.querySelector('#time_off').value = timeOff || '';
+
+            // Tambahkan nama lampu ke modal title
+            const modalTitle = editModal.querySelector('.modal-title');
+            modalTitle.textContent = `Edit Schedule ${name}`;
         });
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Function to toggle icon status
+        function toggleIconStatus(checkboxId, iconId) {
+            const checkbox = document.getElementById(checkboxId);
+            const icon = document.getElementById(iconId);
+
+            checkbox.addEventListener("change", function() {
+                if (checkbox.checked) {
+                    icon.classList.remove("bg-gradient-danger");
+                    icon.classList.add("bg-gradient-success");
+                } else {
+                    icon.classList.remove("bg-gradient-success");
+                    icon.classList.add("bg-gradient-danger");
+                }
+            });
+        }
+
+        // Initialize toggle functions for each lamp
+        toggleIconStatus("relay-toggle1", "icon-status-1");
+        toggleIconStatus("relay-toggle2", "icon-status-2");
+        toggleIconStatus("relay-toggle3", "icon-status-3");
+        toggleIconStatus("relay-toggle4", "icon-status-4");
     });
 </script>
