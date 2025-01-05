@@ -196,17 +196,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="editForm" method="POST" action="{{ route('save.schedule') }}">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
-                    </div>
+                <!-- <form id="editForm" method="POST" action="{{ route('save.schedule') }}"> -->
+                @csrf
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" form="editForm">Save changes</button>
+                <button type="submit" class="btn btn-success" form="editForm">Save changes</button>
             </div>
         </div>
     </div>
