@@ -3,7 +3,7 @@
 @section('content')
 @include('layouts.navbars.auth.topnav', ['title' => "Profile"])
 
-<div class="card shadow-lg mx-4 mt-1">
+<div class="card shadow-lg mx-4 mt-4">
     <div class="card-body p-3">
         <div class="row gx-4">
             <div class="avatar position-relative" style="width: 100px; height: 100px;">
