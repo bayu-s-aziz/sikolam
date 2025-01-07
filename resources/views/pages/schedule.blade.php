@@ -196,15 +196,16 @@
             </div>
             <div class="modal-body">
                 <!-- <form id="editForm" method="POST" action="{{ route('save.schedule') }}"> -->
-                @csrf
-                <div class="mb-3">
-                    <label for="time_on" class="form-label">Time On</label>
-                    <input type="time" class="form-control" id="time_on" name="time_on" required>
-                </div>
-                <div class="mb-3">
-                    <label for="time_off" class="form-label">Time Off</label>
-                    <input type="time" class="form-control" id="time_off" name="time_off" required>
-                </div>
+                <form id="editForm" method="" action="">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="time_on" class="form-label">Time On</label>
+                        <input type="time" class="form-control" id="time_on" name="time_on" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="time_off" class="form-label">Time Off</label>
+                        <input type="time" class="form-control" id="time_off" name="time_off" required>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
