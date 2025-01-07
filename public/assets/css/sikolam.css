@@ -19323,23 +19323,7 @@ fieldset:disabled .btn {
         display: none !important;
     }
 }
-/*!
 
-=========================================================
-* Argon Dashboard - v2.0.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (site.license)
-
-* Coded by www.creative-tim.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 .alert-primary {
     background-image: linear-gradient(310deg, #2dce89 0%, #f3410f 100%);
 }
