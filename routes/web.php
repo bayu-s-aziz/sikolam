@@ -43,7 +43,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/{page}', [PageController::class, 'index'])->name('page');
 	Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 	Route::post('/Relay1', [Relay1Controller::class, 'toggleRelay1']);
-	Route::get('/Relay1/status', [Relay1Controller::class, 'getRelay1Status']);
 	Route::post('/Relay2', [Relay2Controller::class, 'toggleRelay2']);
 	Route::post('/Relay3', [Relay3Controller::class, 'toggleRelay3']);
 	Route::post('/Relay4', [Relay4Controller::class, 'toggleRelay4']);
@@ -51,7 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::post('/save-schedule', function (Illuminate\Http\Request $request) {
 		// Ambil data dari request
-		$data = $request->only(['name', 'time_on', 'time_off', 'status']);
+		$data = $request->only(['name', 'timeon', 'timeoff', 'status']);
 
 		// Simpan data di session
 		$schedules = Session::get('schedules', []);
