@@ -2,7 +2,7 @@
 
 @section('content')
 @include('layouts.navbars.auth.topnav', ['title' => 'Schedule'])
-<div class="container-fluid py-4">
+<div class="container-fluid py-4 px-0">
     <div class="container">
         <div class="row">
             @foreach($lampus as $lampu)
@@ -44,7 +44,6 @@
                                     <input type="hidden" name="status" value="{{ $lampu->status ? 0 : 1 }}">
                                     <label class="switch">
                                         <input type="checkbox" onchange="this.form.submit()" {{ $lampu->status ? 'checked' : '' }}>
-                                        <span class="slider round"></span>
                                     </label>
                                 </form>
                             </div>
@@ -80,8 +79,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-success" form="editForm">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-success" form="editForm">Save</button>
             </div>
         </div>
     </div>
@@ -105,7 +104,7 @@
 
             // Tambahkan nama lampu ke modal title
             const modalTitle = editModal.querySelector('.modal-title');
-            modalTitle.textContent = `Edit Schedule ${name}`;
+            modalTitle.textContent = `Edit Schedule - ${name}`;
         });
     });
 </script>

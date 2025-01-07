@@ -11,6 +11,7 @@ class LampuController extends Controller
     {
         $lampus = Lampu::all(); // Ambil semua data lampu
         return view('pages.schedule', compact('lampus'));
+        return view('pages.dashboard', compact('lampus'));
     }
 
     public function updateStatus(Request $request, $id)
@@ -34,5 +35,18 @@ class LampuController extends Controller
         $lampu->save();
 
         return redirect()->route('schedule.index')->with('success', 'Schedule updated successfully!');
+    }
+
+    public function updateName(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $lampu = Lampu::findOrFail($id);
+        $lampu->name = $validatedData['name'];
+        $lampu->save();
+
+        return redirect()->route('home')->with('success', 'Name updated successfully!');
     }
 }

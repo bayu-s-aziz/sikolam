@@ -13,7 +13,7 @@ use App\Http\Controllers\Relay1Controller;
 use App\Http\Controllers\Relay2Controller;
 use App\Http\Controllers\Relay3Controller;
 use App\Http\Controllers\Relay4Controller;
-use App\Http\Controllers\ScheduleController;
+
 use App\Http\Controllers\LampuController;
 
 
@@ -35,6 +35,13 @@ Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middle
 Route::get('/schedule', [LampuController::class, 'index'])->name('schedule.index');
 Route::post('/lampu/{id}/update-status', [LampuController::class, 'updateStatus'])->name('lampu.update-status');
 Route::post('/lampu/{lampu}/update-schedule', [LampuController::class, 'updateSchedule'])->name('lampu.update-schedule');
+Route::put('/lampu/{id}/update', [LampuController::class, 'updateName'])->name('lampu.update-name');
+
+
+
+
+
+
 
 
 Route::group(['middleware' => 'auth'], function () {

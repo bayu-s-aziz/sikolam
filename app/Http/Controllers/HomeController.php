@@ -26,6 +26,6 @@ class HomeController extends Controller
     public function index()
     {
         $lampus = Lampu::all(); // Ambil semua data lampu
-        return view('pages.schedule', compact('lampus'));
+        return view('pages.dashboard', compact('lampus'));
     }
 }
