@@ -9,5 +9,6 @@ class Lampu extends Model
 {
     use HasFactory;
 
-    protected $table = 'lampu'; // Ensure this matches your table name
+    protected $table = 'lampu';
+    protected $fillable = ['name', 'timeon', 'timeoff', 'status'];
 }

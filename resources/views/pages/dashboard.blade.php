@@ -212,10 +212,6 @@
         </div>
     </div>
 </div>
-
-
-
-
 @endsection
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -238,8 +234,6 @@
             modalTitle.textContent = `Edit ${name}`;
         });
     });
-
-
     document.addEventListener("DOMContentLoaded", function() {
         // Function to toggle icon status
         function toggleIconStatus(checkboxId, iconId) {

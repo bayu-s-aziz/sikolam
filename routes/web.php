@@ -14,6 +14,10 @@ use App\Http\Controllers\Relay2Controller;
 use App\Http\Controllers\Relay3Controller;
 use App\Http\Controllers\Relay4Controller;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\LampuController;
+
+
+
 
 Route::get('/', function () {
 	return redirect('/dashboard');
@@ -28,6 +32,10 @@ Route::post('/reset-password', [ResetPassword::class, 'send'])->middleware('gues
 Route::get('/change-password', [ChangePassword::class, 'show'])->middleware('guest')->name('change-password');
 Route::post('/change-password', [ChangePassword::class, 'update'])->middleware('guest')->name('change.perform');
 Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/schedule', [LampuController::class, 'index'])->name('schedule.index');
+Route::post('/lampu/{id}/update-status', [LampuController::class, 'updateStatus'])->name('lampu.update-status');
+Route::post('/lampu/{lampu}/update-schedule', [LampuController::class, 'updateSchedule'])->name('lampu.update-schedule');
+
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/profile', [UserProfileController::class, 'show'])->name('profile');
@@ -39,8 +47,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/Relay2', [Relay2Controller::class, 'toggleRelay2']);
 	Route::post('/Relay3', [Relay3Controller::class, 'toggleRelay3']);
 	Route::post('/Relay4', [Relay4Controller::class, 'toggleRelay4']);
-	Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule');
-	Route::get('/schedule', [ScheduleController::class, 'update'])->name('schedule.update');
 
 
 	Route::post('/save-schedule', function (Illuminate\Http\Request $request) {

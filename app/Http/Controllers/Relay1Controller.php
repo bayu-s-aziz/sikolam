@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-use App\Models\Lampu1; // Pastikan model Lampu1 sudah ada dan terkoneksi dengan tabel 'lampu_1'
+use App\Models\Lampu; // Pastikan model Lampu1 sudah ada dan terkoneksi dengan tabel 'lampu_1'
 
 class Relay1Controller extends Controller
 {
@@ -13,7 +13,7 @@ class Relay1Controller extends Controller
         $request->validate(['status' => 'required|boolean']);
 
         // Update status di database
-        $lampu1 = Lampu1::first();
+        $lampu1 = Lampu::find(1);;
         if (!$lampu1) {
             return redirect()
                 ->back()

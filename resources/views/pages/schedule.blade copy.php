@@ -19,11 +19,9 @@
                             <div class="col-2">
                                 <a href="#" class="text-secondary text-xxs text" data-bs-toggle="modal"
                                     data-bs-target="#editModal" data-name="{{ $lampu->name }}"
-                                    data-time-on="{{ $lampu->timeon }}" data-time-off="{{ $lampu->timeoff }}"
-                                    data-action-url="{{ route('lampu.update-schedule', $lampu->id) }}">
+                                    data-time-on="{{ $lampu->timeon }}" data-time-off="{{ $lampu->timeoff }}">
                                     <i class="ni ni-settings-gear-65 text-lg opacity-10" aria-hidden="true"></i>
                                 </a>
-
                             </div>
                             <div class="col-8 schedule-1">
                                 <p class="mb-0">
@@ -67,7 +65,7 @@
             </div>
             <div class="modal-body">
 
-                <form id="editForm" method="POST" action="">
+                <form id="editForm" method="" action="">
                     @csrf
                     <div class="mb-3">
                         <label for="timeon" class="form-label">Time On</label>
@@ -95,11 +93,12 @@
             const name = button.getAttribute('data-name');
             const timeOn = button.getAttribute('data-time-on');
             const timeOff = button.getAttribute('data-time-off');
-            const actionUrl = button.getAttribute('data-action-url'); // Mendapatkan action URL
+            const status = button.getAttribute('data-status');
+            const actionUrl = button.getAttribute('data-action-url');
 
             // Isi form dengan data dari tombol
             const modalForm = editModal.querySelector('#editForm');
-            modalForm.action = actionUrl; // Menetapkan URL aksi
+            modalForm.action = actionUrl;
             modalForm.querySelector('#timeon').value = timeOn || '';
             modalForm.querySelector('#timeoff').value = timeOff || '';
 
@@ -107,5 +106,30 @@
             const modalTitle = editModal.querySelector('.modal-title');
             modalTitle.textContent = `Edit Schedule ${name}`;
         });
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Function to toggle icon status
+        function toggleIconStatus(checkboxId, iconId) {
+            const checkbox = document.getElementById(checkboxId);
+            const icon = document.getElementById(iconId);
+
+            checkbox.addEventListener("change", function() {
+                if (checkbox.checked) {
+                    icon.classList.remove("bg-gradient-danger");
+                    icon.classList.add("bg-gradient-success");
+                } else {
+                    icon.classList.remove("bg-gradient-success");
+                    icon.classList.add("bg-gradient-danger");
+                }
+            });
+        }
+
+        // Initialize toggle functions for each lamp
+        toggleIconStatus("relay-toggle1", "icon-status-1");
+        toggleIconStatus("relay-toggle2", "icon-status-2");
+        toggleIconStatus("relay-toggle3", "icon-status-3");
+        toggleIconStatus("relay-toggle4", "icon-status-4");
     });
 </script>
