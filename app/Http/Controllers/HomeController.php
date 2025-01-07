@@ -28,4 +28,13 @@ class HomeController extends Controller
         $lampus = Lampu::all(); // Ambil semua data lampu
         return view('pages.dashboard', compact('lampus'));
     }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $lampu = Lampu::findOrFail($id);
+        $lampu->status = $request->status;
+        $lampu->save();
+
+        return redirect()->back()->with('success', 'Lampu berhasil diperbarui.');
+    }
 }

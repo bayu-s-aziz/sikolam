@@ -36,6 +36,8 @@ Route::get('/schedule', [LampuController::class, 'index'])->name('schedule.index
 Route::post('/lampu/{id}/update-status', [LampuController::class, 'updateStatus'])->name('lampu.update-status');
 Route::post('/lampu/{lampu}/update-schedule', [LampuController::class, 'updateSchedule'])->name('lampu.update-schedule');
 Route::put('/lampu/{id}/update', [LampuController::class, 'updateName'])->name('lampu.update-name');
+Route::patch('/lampu/{id}/status', [LampuController::class, 'updateStatus'])->name('lampu.update-status');
+
 
 
 

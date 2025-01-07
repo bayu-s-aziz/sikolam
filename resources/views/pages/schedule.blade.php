@@ -5,6 +5,9 @@
 <div class="container-fluid py-4 px-0">
     <div class="container">
         <div class="row">
+            <div id="alert">
+                @include('components.alert')
+            </div>
             @foreach($lampus as $lampu)
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                 <div class="card">

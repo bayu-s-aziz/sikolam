@@ -3,7 +3,9 @@
 @section('content')
 @include('layouts.navbars.auth.topnav', ['title' => 'Dashboard'])
 <div class="container-fluid py-4">
-    @include('components.alert')
+    <div id="alert">
+        @include('components.alert')
+    </div>
     <div class="row">
         @foreach($lampus as $index => $lampu)
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -33,7 +35,7 @@
                                 <span class="text-sm font-weight-bold"> </span>
                             </p>
                         </div>
-                        <div class="col-4 text-end">
+                        <div class="col-4 text-end" class="icon status-{{ $index+1 }}">
                             <div class="icon icon-shape {{ $lampu->status ? 'bg-gradient-success' : 'bg-gradient-danger' }} shadow-danger text-center rounded-circle">
                                 <i class="ni ni-bulb-61 text-lg opacity-10" aria-hidden="true"></i>
                             </div>
@@ -98,6 +100,10 @@
             modalForm.setAttribute('action', actionUrl);
             modalForm.querySelector('#lampu-id').value = lampuId;
             modalForm.querySelector('#name').value = lampuName;
+
+            const modalTitle = editModal.querySelector('.modal-title');
+            modalTitle.textContent = `Edit Name - ${lampuName}`;
         });
+
     });
 </script>
