@@ -234,7 +234,7 @@
 
             // Tambahkan nama lampu ke modal title
             const modalTitle = editModal.querySelector('.modal-title');
-            modalTitle.textContent = `Edit Name ${name}`;
+            modalTitle.textContent = `Edit ${name}`;
         });
     });
 
