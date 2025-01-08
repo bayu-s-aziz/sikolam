@@ -35,8 +35,8 @@
                                 <span class="text-sm font-weight-bold"> </span>
                             </p>
                         </div>
-                        <div class="col-4 text-end" class="icon status-{{ $index+1 }}">
-                            <div class="icon icon-shape {{ $lampu->status ? 'bg-gradient-success' : 'bg-gradient-danger' }} shadow-danger text-center rounded-circle">
+                        <div class="col-4 text-end">
+                            <div class="icon icon-shape {{ $lampu->status ? 'bg-gradient-success' : 'bg-gradient-danger' }} shadow-danger text-center rounded-circle" id="icon-status-{{ $index+1 }}">
                                 <i class="ni ni-bulb-61 text-lg opacity-10" aria-hidden="true"></i>
                             </div>
                         </div>
@@ -104,6 +104,26 @@
             const modalTitle = editModal.querySelector('.modal-title');
             modalTitle.textContent = `Edit Name - ${lampuName}`;
         });
-
+    });
+    document.addEventListener("DOMContentLoaded", function() {
+        // Function to toggle icon status
+        function toggleIconStatus(checkboxId, iconId) {
+            const checkbox = document.getElementById(checkboxId);
+            const icon = document.getElementById(iconId);
+            checkbox.addEventListener("change", function() {
+                if (checkbox.checked) {
+                    icon.classList.remove("bg-gradient-danger");
+                    icon.classList.add("bg-gradient-success");
+                } else {
+                    icon.classList.remove("bg-gradient-success");
+                    icon.classList.add("bg-gradient-danger");
+                }
+            });
+        }
+        // Initialize toggle functions for each lamp
+        toggleIconStatus("relay-toggle1", "icon-status-1");
+        toggleIconStatus("relay-toggle2", "icon-status-2");
+        toggleIconStatus("relay-toggle3", "icon-status-3");
+        toggleIconStatus("relay-toggle4", "icon-status-4");
     });
 </script>
