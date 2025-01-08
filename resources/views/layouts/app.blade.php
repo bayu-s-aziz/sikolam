@@ -18,7 +18,6 @@
     <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="assets/css/sikolam.css" rel="stylesheet" />
-    <link id="pagestyle" href="assets/css/switch.css" rel="stylesheet" />
 </head>
 
 <body class="{{ $class ?? '' }}">
