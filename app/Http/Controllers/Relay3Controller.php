@@ -24,8 +24,8 @@ class Relay3Controller extends Controller
 
         // Kirimkan status ke API
         $status = $request->input('status') ? 'true' : 'false';
-        $url = env('THINGER_API_URL_3');
-        $authToken = env('THINGER_API_TOKEN_3');
+        $url = $lampu3->api_url;
+        $authToken = $lampu3->api_token;
 
         $client = new Client();
 
