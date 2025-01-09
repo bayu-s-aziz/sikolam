@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Lampu;
 use Illuminate\Http\Request;
+use App\Jobs\TurnOnLamp;
+use App\Jobs\TurnOffLamp;
+use Carbon\Carbon;
 
 class LampuController extends Controller
 {
@@ -48,5 +51,33 @@ class LampuController extends Controller
         $lampu->save();
 
         return redirect()->route('home')->with('success', 'Name updated successfully!');
+    }
+
+    public function store(Request $request)
+    {
+        $lampu = Lampu::create($request->all());
+
+        // Jadwalkan job berdasarkan waktu on/off
+        $timeOn = Carbon::parse($lampu->timeon);
+        $timeOff = Carbon::parse($lampu->timeoff);
+
+        TurnOnLamp::dispatch($lampu)->delay($timeOn);
+        TurnOffLamp::dispatch($lampu)->delay($timeOff);
+
+        return response()->json(['message' => 'Lamp created and actions scheduled successfully', 'lampu' => $lampu]);
+    }
+
+    public function update(Request $request, Lampu $lampu)
+    {
+        $lampu->update($request->all());
+
+        // Jadwalkan ulang job berdasarkan waktu on/off
+        $timeOn = Carbon::parse($lampu->timeon);
+        $timeOff = Carbon::parse($lampu->timeoff);
+
+        TurnOnLamp::dispatch($lampu)->delay($timeOn);
+        TurnOffLamp::dispatch($lampu)->delay($timeOff);
+
+        return response()->json(['message' => 'Lamp updated and actions rescheduled successfully', 'lampu' => $lampu]);
     }
 }
